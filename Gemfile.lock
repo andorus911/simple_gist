@@ -41,7 +41,6 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
-    bcrypt-ruby (3.1.2-x64-mingw32)
     bindex (0.5.0)
     bootstrap-sass (2.3.0.0)
       sass (~> 3.2)
@@ -67,6 +66,11 @@ GEM
     diff-lcs (1.3)
     erubi (1.6.0)
     execjs (2.7.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     ffi (1.9.18-x64-mingw32)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -198,11 +202,11 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 2.3)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  factory_girl_rails (= 4.2.1)
   jbuilder (~> 2.5)
   jquery-rails
   pg
