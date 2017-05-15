@@ -10,6 +10,7 @@ end
 gem 'rails', '~> 5.1.1'
 gem 'pg'
 gem 'bootstrap-sass', '2.3'
+gem 'bcrypt-ruby', '3.1.2'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
