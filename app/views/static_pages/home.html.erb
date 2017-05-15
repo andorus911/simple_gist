@@ -1,5 +1,11 @@
 <% provide(:title, 'Home') %>
-<h1>Simple Gist</h1>
-<p>
-  This is the home page for Simple Gist.
-</p>
+<div class="center hero-unit">
+  <h1>Simple Gist</h1>
+  <h2>
+    This is the home page for Simple Gist.
+  </h2>
+
+  <%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("home_image.png", alt: "home"), 'https://github.com/andorus911' %>
