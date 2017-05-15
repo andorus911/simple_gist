@@ -4,45 +4,43 @@ describe "StaticPages" do
 
   let(:base_title) { "Simple Gist" }
 
+  subject { page }
+
   describe "Home page" do
-    before(:each) do
-      visit '/static_pages/home'
-    end
+    before { visit '/' }
 
-    it "should have the content 'Simple Gist'" do
-      expect(page).to have_content('Simple Gist')
-    end
+    it { should have_content('Simple Gist') }
 
-    it "should have the right title" do
-      expect(page).to have_title("#{base_title} | Home")
-    end
+    it { should have_title("#{base_title} | Home") }
   end
 
   describe "Help page" do
-    before(:each) do
-      visit '/static_pages/help'
-    end
+    before { visit '/help' }
 
-    it "should have the developer mail address" do
-      expect(page).to have_link('me', :href=>'mailto:andorus911@gmail.com')
-    end
+    it { should have_link('me', :href=>'mailto:andorus911@gmail.com') }
+    
+    it { should have_content('Help') }
 
-    it "should have the right title" do
-      expect(page).to have_title("#{base_title} | Help")
-    end
+    it { should have_title("#{base_title} | Help") }
   end
 
   describe "About page" do
-    before(:each) do
-      visit '/static_pages/about'
-    end
+    before { visit '/about' }
 
-    it "should have the content 'About Us'" do
-      expect(page).to have_content('About Us')
-    end
+    it { should have_content('About Us') }
 
-    it "should have the right title" do
-      expect(page).to have_title("#{base_title} | About")
-    end
+    it { should have_title("#{base_title} | About") }
+  end
+
+  describe "Contact page" do
+    before { visit '/contact' }
+
+    it { should have_link('Gmail', :href=>'mailto:andorus911@gmail.com') }
+
+    it { should have_link('Skype', :href=>'skype:andorus911?chat') }
+
+    it { should have_content('Contact') }
+
+    it { should have_title("#{base_title} | Contact") }
   end
 end
