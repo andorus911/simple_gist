@@ -15,7 +15,7 @@ describe "User pages" do
   end
 
   describe "signup page" do
-    before { visit '/signup' }
+    before { visit signup_path }
 
     it { should have_content('Sign up') }
 

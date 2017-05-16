@@ -7,7 +7,7 @@ describe "StaticPages" do
   subject { page }
 
   describe "Home page" do
-    before { visit '/' }
+    before { visit root_path }
 
     it { should have_content('Simple Gist') }
 
@@ -15,7 +15,7 @@ describe "StaticPages" do
   end
 
   describe "Help page" do
-    before { visit '/help' }
+    before { visit help_path }
 
     it { should have_link('me', :href=>'mailto:andorus911@gmail.com') }
     
@@ -25,7 +25,7 @@ describe "StaticPages" do
   end
 
   describe "About page" do
-    before { visit '/about' }
+    before { visit about_path }
 
     it { should have_content('About Us') }
 
@@ -33,7 +33,7 @@ describe "StaticPages" do
   end
 
   describe "Contact page" do
-    before { visit '/contact' }
+    before { visit contact_path }
 
     it { should have_link('Gmail', :href=>'mailto:andorus911@gmail.com') }
 
