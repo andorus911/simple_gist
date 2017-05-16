@@ -9,10 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 gem 'bootstrap-sass', '2.3'
-#gem 'bcrypt-ruby', '3.1.2'
-#gem 'bcrypt', '~> 3.1.7'
-#gem 'bcrypt', platforms: :ruby
-#gem 'bcrypt-ruby', '3.1.5', :require => 'bcrypt'
+gem 'bcrypt-ruby', '3.0.0', :require => 'bcrypt'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
