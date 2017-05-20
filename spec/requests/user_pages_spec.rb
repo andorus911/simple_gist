@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe "User pages" do
-
   let(:base_title) { "Simple Gist" }
 
   subject { page }
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
@@ -22,10 +22,9 @@ describe "User pages" do
   end
 
   describe "signup page" do
+    let(:submit) { "Create account" }
 
     before { visit signup_path }
-
-    let(:submit) { "Create account" }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -43,9 +42,10 @@ describe "User pages" do
 
       describe "after saving the user" do
         before { click_button submit }
-        
+
         let(:user) { User.find_by(email: 'user@example.com') }
 
+        it { should have_link('Sign out') }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
