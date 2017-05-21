@@ -9,4 +9,10 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :snippet do
+    title "hello.rb"
+    content "puts \"Hello, world!\""
+    user
+  end
 end
