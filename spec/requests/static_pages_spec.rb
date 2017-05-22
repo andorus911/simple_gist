@@ -34,7 +34,7 @@ describe "StaticPages" do
       end
 
       describe "with unsigned in user" do
-        before { click_link "Sign out" }
+        before { visit signout_path }
 
         it { should have_content('Sign Up') }
         it { should_not have_content("Compose new snippet...") }
