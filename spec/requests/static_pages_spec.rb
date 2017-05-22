@@ -11,6 +11,35 @@ describe "StaticPages" do
 
     it { should have_content('Simple Gist') }
     it { should have_title("#{base_title} | Home") }
+
+    describe "discover" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:first_snippet) do
+        FactoryGirl.create(:snippet, user: FactoryGirl.create(:user))
+      end
+      let(:second_snippet) do
+        FactoryGirl.create(:snippet, user: FactoryGirl.create(:user))
+      end
+
+      it "should have some messages" do
+        expect(:discover).to { should include(first_snippet) }
+        expect(:discover).to { should include(second_snippet) }
+      end
+
+      describe "with signed in user" do # Not existing big 'Simple Gist' table
+        before { sign_in user }
+
+        it { should have_content("Compose new snippet...") }
+        it { should_not have_content('Sign Up') }
+      end
+
+      describe "with unsigned in user" do
+        before { click_link "Sign out" }
+
+        it { should have_content('Sign Up') }
+        it { should_not have_content("Compose new snippet...") }
+      end
+    end
   end
 
   describe "Help page" do

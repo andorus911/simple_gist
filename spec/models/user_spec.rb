@@ -111,7 +111,6 @@ describe User do
   end
 
   describe "snippet associations" do
-
     before { @user.save }
     let!(:older_snippet) do
       FactoryGirl.create(:snippet, user: @user, created_at: 1.day.ago)
