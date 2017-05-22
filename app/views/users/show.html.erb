@@ -10,7 +10,7 @@
   </aside>
   <div class="span8">
     <% if @user.snippets.any? %>
-      <h3>Snippets (<%= @user.snippets.count %>)</h3>
+      <h4>Snippets (<%= @user.snippets.count %>)</h4>
       <ol class="snippets">
         <%= render @snippets %>
       </ol>

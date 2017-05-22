@@ -1,6 +1,11 @@
 <li>
-  <span class="content"><%= snippet.content %></span>
+  <span class="title"><%= snippet.title %></span><br>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(snippet.created_at) %> ago.
+    Posted <%= time_ago_in_words(snippet.created_at) %> ago by 
+    <% if !current_user?(snippet.user) %>
+      <%= link_to snippet.user.name, snippet.user %>
+    <% else %>
+      <%= link_to 'you', snippet.user %>
+    <% end %>
   </span>
 </li>
