@@ -13,11 +13,11 @@ describe "Snippet pages" do
     describe "with invalid information" do
 
       it "should not create a snippet" do
-        expect { click_button "Post" }.not_to change(Snippet, :count)
+        expect { click_button "Snip it" }.not_to change(Snippet, :count)
       end
 
       describe "error messages" do
-        before { click_button "Post" }
+        before { click_button "Snip it" }
         
         it { should have_content('error') }
       end
@@ -30,8 +30,29 @@ describe "Snippet pages" do
       end
 
       it "should create a snippet" do
-        expect { click_button "Post" }.to change(Snippet, :count).by(1)
+        expect { click_button "Snip it" }.to change(Snippet, :count).by(1)
       end
     end
+  end
+
+  describe "snippet destruction" do
+    before { FactoryGirl.create(:snippet, user: user) }
+
+    describe "as correct user" do
+      before { visit root_path }
+
+      it "should delete a snippet" do
+        expect { click_link "delete" }.to change(Snippet, :count).by(-1)
+      end
+    end
+  end
+
+  describe "snippet showing" do
+    let(:snippet) { FactoryGirl.create(:snippet, user: user) }
+    before { visit snippet_path(snippet) }
+
+    it { should have_link('you', href: user_path(user)) }
+    it { should have_title(snippet.title) }
+    it { should have_content(snippet.content) }
   end
 end

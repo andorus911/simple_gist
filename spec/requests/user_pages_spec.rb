@@ -53,8 +53,8 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:m1) { FactoryGirl.create(:snippet, user: user, content: "Foo") }
-    let!(:m2) { FactoryGirl.create(:snippet, user: user, content: "Bar") }
+    let!(:m1) { FactoryGirl.create(:snippet, user: user, title: "Foo", content: "Some code...") }
+    let!(:m2) { FactoryGirl.create(:snippet, user: user, title: "Bar", content: "Some code...") }
 
     before { visit user_path(user) }
 
@@ -62,8 +62,8 @@ describe "User pages" do
     it { should have_title(user.name) }
 
     describe "snippets" do
-      it { should have_content(m1.content) }
-      it { should have_content(m2.content) }
+      it { should have_content(m1.title) }
+      it { should have_content(m2.title) }
       it { should have_content(user.snippets.count) }
     end
   end

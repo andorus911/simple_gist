@@ -14,31 +14,11 @@ describe "StaticPages" do
 
     describe "discover" do
       let(:user) { FactoryGirl.create(:user) }
-      let(:first_snippet) do
-        FactoryGirl.create(:snippet, user: FactoryGirl.create(:user))
-      end
-      let(:second_snippet) do
+      let!(:snippet) do
         FactoryGirl.create(:snippet, user: FactoryGirl.create(:user))
       end
 
-      it "should have some messages" do
-        expect(:discover).to { should include(first_snippet) }
-        expect(:discover).to { should include(second_snippet) }
-      end
-
-      describe "with signed in user" do # Not existing big 'Simple Gist' table
-        before { sign_in user }
-
-        it { should have_content("Compose new snippet...") }
-        it { should_not have_content('Sign Up') }
-      end
-
-      describe "with unsigned in user" do
-        before { visit signout_path }
-
-        it { should have_content('Sign Up') }
-        it { should_not have_content("Compose new snippet...") }
-      end
+      it { should have_link(snippet.title, href: snippet_path(snippet)) } # Smthng wrong...
     end
   end
 

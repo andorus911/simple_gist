@@ -20,8 +20,10 @@
 <% end %>
 
 <div class="left">
+  <% if !@discover.nil? %>
   <ol class="snippets">
     <%= render @discover %>
   </ol>
   <%= will_paginate @discover %>
+  <% end %>
 </div>
