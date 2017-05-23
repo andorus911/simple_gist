@@ -8,4 +8,13 @@
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.snippets.any? %>
+      <h4>Snippets (<%= @user.snippets.count %>)</h4>
+      <ol class="snippets">
+        <%= render @snippets %>
+      </ol>
+      <%= will_paginate @snippets %>
+    <% end %>
+  </div>
 </div>

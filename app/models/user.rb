@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :snippets, dependent: :destroy # Should be without :destroy, MAY BE. A gists may be important info for users... or not
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 

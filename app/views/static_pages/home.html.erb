@@ -1,9 +1,29 @@
-<% provide(:title, 'Home') %>
-<div class="center hero-unit">
-  <h1>Simple Gist</h1>
-  <h2>
-    This is the home page for Simple Gist.
-  </h2>
+<% if signed_in? %>
+  <% provide(:title, current_user) %>
+  <div class="left">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/snippet_form' %>
+      </section>
+  </div>
+<% else %>
+  <% provide(:title, 'Home') %>
+  <div class="center hero-unit">
+    <h1>Simple Gist</h1>
+    <h2>This is the home page for Simple Gist. It is a part of my portfolio.</h2>
+    <h3>If you came here by mistake, so... Nice to see you, pal! Anyway!</h3>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>
+
+<div class="left">
+  <% if !@discover.nil? %>
+  <ol class="snippets">
+    <%= render @discover %>
+  </ol>
+  <%= will_paginate @discover %>
+  <% end %>
 </div>

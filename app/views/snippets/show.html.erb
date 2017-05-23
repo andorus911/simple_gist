@@ -1,0 +1,13 @@
+<% provide(:title, @snippet.title) %>
+<div class="container">
+  <h4><%= @snippet.title %></h4>
+  <h5>
+  posted <%= time_ago_in_words(@snippet.created_at) %> ago by 
+  <% if !current_user?(@snippet.user) %>
+    <%= link_to @snippet.user.name, @snippet.user %>
+  <% else %>
+    <%= link_to 'you', @snippet.user %>
+  <% end %>
+  </h5>
+  <pre><%= @snippet.content %></pre>
+</div>
