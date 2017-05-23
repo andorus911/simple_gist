@@ -1,5 +1,5 @@
 class SnippetsController < ApplicationController
-  before_action :signed_in_user
+  before_action :signed_in_user # ATTENTION ON THIS!
 
   def create
     @snippet = current_user.snippets.build(snippet_params)
@@ -9,6 +9,10 @@ class SnippetsController < ApplicationController
     else
       render 'static_pages/home'
     end
+  end
+
+  def show
+    @snippet = Snippet.find(params[:id])
   end
 
   def destroy
