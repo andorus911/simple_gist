@@ -32,6 +32,12 @@ describe "Snippet pages" do
       it "should create a snippet" do
         expect { click_button "Snip it" }.to change(Snippet, :count).by(1)
       end
+
+      describe "created link to Snippet page" do
+        before { click_button "Snip it" }
+
+        it { should have_link("Latin", href: snippet_path(1)) }
+      end
     end
   end
 

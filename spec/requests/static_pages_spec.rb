@@ -11,15 +11,6 @@ describe "StaticPages" do
 
     it { should have_content('Simple Gist') }
     it { should have_title("#{base_title} | Home") }
-
-    describe "discover" do
-      let(:user) { FactoryGirl.create(:user) }
-      let!(:snippet) do
-        FactoryGirl.create(:snippet, user: FactoryGirl.create(:user))
-      end
-
-      it { should have_link(snippet.title, href: snippet_path(snippet)) } # Smthng wrong...
-    end
   end
 
   describe "Help page" do
