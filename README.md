@@ -1,7 +1,6 @@
-# README
+# SimpleGist
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This website is simple realization of gist.github.com website like a part of my portfolio.
 
 Things you may want to cover:
 
