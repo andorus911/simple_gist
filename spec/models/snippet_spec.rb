@@ -12,6 +12,7 @@ describe Snippet do
   it { should respond_to(:user_id) }
   it { should respond_to(:title) }
   it { should respond_to(:user) }
+  it { should respond_to(:comments) }
   it "its :user should be equal to user" do
     expect(subject.user).to eq user
   end
@@ -41,5 +42,31 @@ describe Snippet do
   describe "with content that is too long" do
     before { @snippet.content = "a" * 3001 }
     it { should_not be_valid }
+  end
+
+  describe "comment associations" do
+    before { @snippet.save }
+    let!(:older_comment) do
+      FactoryGirl.create(:comment, user_id: @snippet.user_id, snippet: @snippet, created_at: 1.day.ago, content: "something")
+    end
+    let!(:newer_comment) do
+      FactoryGirl.create(:comment, user_id: @snippet.user_id, snippet: @snippet, created_at: 1.hour.ago, content: "something else")
+    end
+
+    it { should have_content(older_comment.content) }
+    it { should have_content(newer_comment.content) }
+
+    it "should have the right comments in the right order" do
+      expect(@snippet.comments.to_a).to eq [newer_comment, older_comment]
+    end
+
+    it "should destroy associated comments" do
+      comments = @snippet.comments.to_a
+      @snippet.destroy
+      expect(comments).not_to be_empty
+      comments.each do |comment|
+        expect(Comment.where(id: comment.id)).to be_empty
+      end
+    end
   end
 end

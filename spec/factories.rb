@@ -15,4 +15,10 @@ FactoryGirl.define do
     content "puts \"Hello, world!\""
     user
   end
+
+  factory :comment do
+    content "here typos!"
+    user
+    snippet
+  end
 end

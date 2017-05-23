@@ -14,10 +14,12 @@ class SnippetsController < ApplicationController
 
   def show
     @snippet = Snippet.find(params[:id])
+    @comments = @snippet.comments.paginate(page: params[:page])
   end
 
   def destroy
     @snippet.destroy
+    flash[:success] = "Snippet deleted."
     redirect_to root_url
   end
 

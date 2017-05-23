@@ -11,3 +11,15 @@
   </h5>
   <pre><%= @snippet.content %></pre>
 </div>
+<div class="content">
+  <% if @comments.any? %>
+    <h3>comments (<%= @comments.count %>)</h3>
+    <ol class="comments">
+      <%= render @comments %>
+    </ol>
+    <%= will_paginate @comments %>
+  <% else %>
+    <h3>comments (0)</h3>
+  <% end %>
+
+</div>
