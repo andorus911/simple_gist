@@ -8,9 +8,7 @@
   <% else %>
     <%= link_to 'you', @snippet.user %>
   <% end %>
-  <% if current_user?(@snippet.user) %>
-    <%= link_to "delete", @snippet, method: :delete, data: { confirm: "You sure?" }, title: @snippet.content, id: "delete" %>
-  <% end %>
+  <%= render 'shared/delete', object: @snippet %>
   </h5>
   <pre><%= @snippet.content %></pre>
 </div>

@@ -10,9 +10,5 @@
       <%= link_to 'you', comment.user %>
     <% end %>
   </span>
-  <% if !current_user.nil? || current_user?(comment.user) %>
-  <% if current_user.admin? %>
-    <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, title: comment.content, id: "delete" %>
-  <% end %>
-  <% end %>
+  <%= render 'shared/delete', object: comment %>
 </ul>

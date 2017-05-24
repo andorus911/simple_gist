@@ -19,6 +19,7 @@ class SnippetsController < ApplicationController
   end
 
   def destroy
+    @snippet = Snippet.find(params[:id])
     store_location
     @snippet.destroy
     flash[:success] = "Snippet deleted."
