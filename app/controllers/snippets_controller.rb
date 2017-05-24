@@ -6,7 +6,7 @@ class SnippetsController < ApplicationController
     @snippet = current_user.snippets.build(snippet_params)
     if @snippet.save
       flash[:success] = "Snippet created!"
-      redirect_to root_url
+      redirect_to @snippet
     else
       render 'static_pages/home'
     end
@@ -14,13 +14,15 @@ class SnippetsController < ApplicationController
 
   def show
     @snippet = Snippet.find(params[:id])
+    @comment = @snippet.comments.build if signed_in?
     @comments = @snippet.comments.paginate(page: params[:page])
   end
 
   def destroy
+    store_location
     @snippet.destroy
     flash[:success] = "Snippet deleted."
-    redirect_to root_url
+    redirect_back_or root_url
   end
 
   private

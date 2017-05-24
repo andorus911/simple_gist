@@ -8,10 +8,20 @@
   <% else %>
     <%= link_to 'you', @snippet.user %>
   <% end %>
+  <% if current_user?(@snippet.user) %>
+    <%= link_to "delete", @snippet, method: :delete, data: { confirm: "You sure?" }, title: @snippet.content, id: "delete" %>
+  <% end %>
   </h5>
   <pre><%= @snippet.content %></pre>
 </div>
-<div class="content">
+<div class="container">
+  <% if signed_in? %>
+    <div class="left">
+      <section>
+        <%= render 'shared/comment_form' %>
+      </section>
+    </div>
+  <% end %>
   <% if @comments.any? %>
     <h3>comments (<%= @comments.count %>)</h3>
     <ol class="comments">
@@ -21,5 +31,4 @@
   <% else %>
     <h3>comments (0)</h3>
   <% end %>
-
 </div>

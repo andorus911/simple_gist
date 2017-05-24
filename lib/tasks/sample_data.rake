@@ -24,5 +24,17 @@ namespace :db do
       content = Faker::Lorem.sentence(5)
       users.each { |user| user.snippets.create!(title: title, content: content) }
     end
+
+    snippets = Snippet.all.limit(5)
+    10.times do
+      content = Faker::Lorem.sentence(2)
+      users.each do |user|
+        snippets.each do |snippet|
+          Comment.create!(snippet_id: snippet.id, user_id: user.id, content: content)
+          #snippet.comments.create!(user_id: user.id, content: content)
+        end
+      end
+    end
+    
   end
 end
